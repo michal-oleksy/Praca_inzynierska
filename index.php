@@ -17,13 +17,13 @@
                 <h1>Zaloguj się</h1>
                 <form action="index.php" method = "post">
                         <div class="form-group text-start">
-                            <label for="emailInput">Adres e-mail:</label>
-                            <input type="email" class="form-control" name="email" id="emailInput" aria-describedby="emailHelp">
+                            <label for="emailInputLogin">Adres e-mail:</label>
+                            <input type="email" class="form-control" name="email" id="emailInputLogin" aria-describedby="emailHelp">
                             <small id="emailHelp" class="form-text text-muted">Nie przekazujemy twojego adresu e-mail innym podmiotom.</small>
                         </div>
                         <div class="form-group text-start">
-                            <label for="passwordInput">Hasło:</label>
-                            <input type="password" class="form-control" name="password" id="passwordInput">
+                            <label for="passwordInputLogin">Hasło:</label>
+                            <input type="password" class="form-control" name="password" id="passwordInputLogin">
                         </div>
                         <div class="form-group form-check text-start">
                             <input type="checkbox" class="form-check-input" id="rememberMeButton">
@@ -31,30 +31,74 @@
                             
                         </div>
                         <input type="hidden" name="action" value="login"></input>
-                        <div class="d-grid gap-2">
+                        <div class="d-grid gap-2 my-2">
                             <button type="submit" class="btn btn-primary btn-block">Zaloguj</button>
                         </div>
                 </form>
             </div>
         </div>
+        <!-- Rejestracja poniżej -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-4 offset-lg-4 text-center my-5">
+                    <h1>Zarejestruj się</h1>
+                        <form action="index.php" method="post">
+                            <div class="form-group text-start">
+                                <label for="emailInputRegister">Email:</label>
+                                <input type="email" class="form-control" name="email" id="emailInputRegister" required>
+                                <small id="emailHelp" class="form-text text-muted">Nie przekazujemy twojego adresu e-mail innym podmiotom.</small>
+                            </div>
+                            <div class="form-group text-start">
+                                <label for="passwordInputRegister">Hasło:</label>
+                                <input pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}" type="password" class="form-control" name="password" id="passwordInputRegister" required>
+                            </div>
+                            <div class="form-group text-start">
+                                <label for="passwordRepeatInput">Hasło ponownie:</label>
+                                <input pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}" type="password" class="form-control" name="passwordRepeat" id="passwordRepeatInput" required>
+                            </div>                     
+                                <input type="hidden" name="action" value="register"></input>
+                            <!--  -->
+                            <div class="form-group text-start">
+                                <label for="firstNameInput">Imię:</label>
+                                <input type="text" class="form-control" name="firstName" id="firstNameInput" required>
+                            </div>
+                            <div class="form-group text-start">
+                                <label for="lastNameInput">Nazwisko:</label>
+                                <input type="text" class="form-control" name="lastName" id="lastNameInput" required>
+                            </div>
+                            <div class="form-group text-start">
+                                <label for="nicknameInput">Pseudonim:</label>
+                                <input type="text" class="form-control" name="nickname" id="nicknameInput" required>
+                            </div>
+                            <!-- data urodzenia -->
+                            <div class="form-group text-start">
+                                <label for="birthDateInput">Data urodzenia:</label>
+                                <input type="date" class="form-control my-2" name="birthDate" id="birthDateInput" required>
+                            </div>
+                            <!-- plec -->
+                            <div class="form-group text-start">
+                                <label for="sexSelect">Wybierz płeć: </label>
+                                <select class="form-select" name="sexSelect" aria-label="Default select example" id="sexSelect" required>
+                                    <option value="1">Mężczyzna</option>
+                                    <option value="2">Kobieta</option>
+                                </select>
+                            </div>
+                            <div class="d-grid gap-2 my-2">
+                                <button type="submit" class="btn btn-primary btn-block">Zarejestruj</button>
+                            </div>
+
+                        </form> 
+                </div>
+                <div class="col-12 col-lg-4 align-self-center text-start ">
+                    <p class="py-7">Wymagania hasła:<br>- Jedna cyfra od 0 do 9<br>- Jedna mała litera<br> - Jedna wielka litera<br>
+                    - Jeden znak specjalny<br>- Bez spacji<br>- Od 8 do 16 znaków</p>
+                    
+
+                </div>
+            </div>
+            
+        </div>
     </div>
-   
-    
-    
-    <h1>Zarejestruj się</h1>
-    <form action="index.php" method="post">
-        <label for="emailInput">Email:</label>
-        <input type="email" name="email" id="emailInput"><br>
-
-        <label for="passwordInput">Hasło:</label>
-        <input type="password" name="password" id="passwordInput"><br>
-
-        <label for="passwordRepeatInput">Hasło ponownie:</label>
-        <input type="password" name="passwordRepeat" id="passwordRepeatInput"><br>
-
-        <input type="hidden" name="action" value="register"></input>
-        <input type="submit" value="Zarejestruj">
-    </form>
    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
@@ -94,18 +138,25 @@ if($userRow == null){
     }
 
 }}
-
+// rejestracja
 if(isset($_REQUEST['action']) && $_REQUEST['action']=="register"){
     $db = new mysqli('localhost','root','','auth');
     $email = $_REQUEST['email'];
     $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-    $password = $_REQUEST['password'];
+
+    $password = $_REQUEST['password']; 
     $passwordRepeat = $_REQUEST['passwordRepeat'];
+    //
+    $firstName = $_REQUEST['firstName'];
+    $lastName = $_REQUEST['lastName'];
+    $nickname = $_REQUEST['nickname'];
+    $birthDate = $_REQUEST['birthDate'];
+    $sex = $_REQUEST['sexSelect'];
 
     if($password=$passwordRepeat){//hasła są identyczne kontynuuj
         $passwordHash = password_hash($password,PASSWORD_ARGON2I);
-        $q = $db->prepare("INSERT INTO user VALUES (NULL, ?, ?)");
-        $q->bind_param("ss",$email,$passwordHash);
+        $q = $db->prepare("INSERT INTO user VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)");
+        $q->bind_param("sssssss",$email,$passwordHash,$firstName,$lastName,$nickname,$birthDate,$sex);
         $result = $q->execute();
         if($result){
             echo "Zarejestrowano poprawnie";
