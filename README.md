@@ -3,3 +3,4 @@ Changelog:
 01.11.2024: Added custom login form using Bootstrap 5
 02.11.2024: Register form using Bootstrap 5, extended register form, password regex, new columns in database user table
 03.11.2024: New database table with books, Showing books from database
+04.11.2024: Saving and displaying read pages v1
