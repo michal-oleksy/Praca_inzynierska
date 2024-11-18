@@ -1,0 +1,13 @@
+0000000000000000000000000000000000000000 cda8e918dbee871ba1a0eb9a1770b9d8ad7ae324 Michal2001 <testEmail@host.com> 1730409165 +0100	commit (initial): new file: index.php
+cda8e918dbee871ba1a0eb9a1770b9d8ad7ae324 0951f3f6eaa07ce8440ffb226697891a642300f2 Michal2001 <testEmail@host.com> 1730409701 +0100	pull --tags origin main: Fast-forward
+0951f3f6eaa07ce8440ffb226697891a642300f2 0374494d35abfa24176b72ed2e7421ccdfeef1cc Michal2001 <testEmail@host.com> 1730409705 +0100	commit: new file: user.sql
+0374494d35abfa24176b72ed2e7421ccdfeef1cc 9c5427471c0c961eadf0ba3715423af0554e48e6 Michal2001 <testEmail@host.com> 1730489288 +0100	commit: Added custom login form using Bootstrap 5
+9c5427471c0c961eadf0ba3715423af0554e48e6 1904c3fda3e483cfebf13ffa73fcfa1af031349e Michal2001 <testEmail@host.com> 1730568754 +0100	commit: extended register form
+1904c3fda3e483cfebf13ffa73fcfa1af031349e 455f419248faa1fb2fe2fd8ebf83460d283c1e80 Michal2001 <testEmail@host.com> 1730568756 +0100	pull --tags origin main: Merge made by the 'ort' strategy.
+455f419248faa1fb2fe2fd8ebf83460d283c1e80 ba8d4d5a4c5753d587076242d5515c8646f54eba Michal2001 <testEmail@host.com> 1730568968 +0100	commit: new file: .gitignore
+ba8d4d5a4c5753d587076242d5515c8646f54eba 50f590fe52d364a82e430bd691452f3e410c2a91 Michal2001 <testEmail@host.com> 1730662559 +0100	pull --tags origin main: Fast-forward
+50f590fe52d364a82e430bd691452f3e410c2a91 7cf92ab5663e4fe69fddecf7a3bb0735a9ec4f86 Michal2001 <testEmail@host.com> 1730666336 +0100	commit: pokazywanie książek, baza danych książek
+7cf92ab5663e4fe69fddecf7a3bb0735a9ec4f86 6c1530b58fc5c4b2fcec901747b19a25c56d2317 Michal2001 <testEmail@host.com> 1730750473 +0100	commit: Saving and displaying pages read v1
+6c1530b58fc5c4b2fcec901747b19a25c56d2317 7d61d64f6cdd92cd432cb57716996dc731c154b6 Michal2001 <testEmail@host.com> 1730750476 +0100	pull --tags origin main: Merge made by the 'ort' strategy.
+7d61d64f6cdd92cd432cb57716996dc731c154b6 0dae6439f0dd5b129c42a8e3b395cb25f5527612 Michal2001 <testEmail@host.com> 1730750677 +0100	pull --tags origin main: Fast-forward
+0dae6439f0dd5b129c42a8e3b395cb25f5527612 61ea20a9b562d35c9687eaa675613fff98644075 Michal2001 <testEmail@host.com> 1731955478 +0100	commit: modified: .gitignore
