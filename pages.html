@@ -29,9 +29,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="modalLabel">Podaj liczb&#281; stron: </h5>
-					<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button> -->
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
 					<div class="img-container">
@@ -43,20 +41,14 @@
 								</div>
 							</div>
 						</div>
-						<!-- <div class="row">
+						<div class="row">
 							<div class="col-sm-6">  
 								<div class="form-group">
 								<label for="event_start_date">Event start</label>
-								<input type="date" name="event_start_date" id="event_start_date" class="form-control onlydatepicker" placeholder="Event start date">
+								<input type="date" name="event_start_date" id="event_start_date" class="form-control onlydatepicker" placeholder="Event start date"> 
 								</div>
 							</div>
-							<div class="col-sm-6">  
-								<div class="form-group">
-								<label for="event_end_date">Event end</label>
-								<input type="date" name="event_end_date" id="event_end_date" class="form-control" placeholder="Event end date">
-								</div>
-							</div>
-						</div> -->
+						</div> 
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -66,21 +58,16 @@
 		</div>
 	</div>
 <!-- End popup dialog box -->
-
-<br>
-<!-- <center>Developed by <a href="https://shinerweb.com/">Shinerweb</a></center> -->
- <div id="test"></div>
 </body>
 <script>
 $(document).ready(function() {
 	display_events();
-	// document.getElementById("test").innerHTML="dziala"; 
 }); //end document.ready block
 
 function display_events() {
 	var events = new Array();
 $.ajax({
-    url: 'display_event.php',  
+    url: 'display_pages.php',  
     dataType: 'json',
     success: function (response) {
          
@@ -90,9 +77,8 @@ $.ajax({
             event_id: result[i].event_id,
             title: result[i].title,
             start: result[i].start,
-            end: result[i].end,
             color: result[i].color,
-            url: result[i].url
+            // url: result[i].url
         }); 	
     })
 	var calendar = $('#calendar').fullCalendar({
@@ -101,19 +87,24 @@ $.ajax({
 	    editable: true,
         selectable: true,
 		selectHelper: true,
+		eventStartEditable: false,
+		selectAllow: function(event){
+			return moment(event.start).utcOffset(false).isSame(moment(event.end).subtract(1,'second').utcOffset(false),'day');
+		},
         select: function(start, end) {
 				//alert(start);
 				//alert(end);
 				$('#event_start_date').val(moment(start).format('YYYY-MM-DD'));
-				$('#event_end_date').val(moment(end).format('YYYY-MM-DD'));
+				// // $('#event_end_date').val(moment(end).format('YYYY-MM-DD'));
 				$('#event_entry_modal').modal('show');
 			},
+		
         events: events,
-	    eventRender: function(event, element, view) { 
-            element.bind('click', function() {
-					alert(event.event_id);
-				});
-    	}
+	    // eventRender: function(event, element, view) { //TUTAJ DODAC W PRZYSZŁÓŚCI EDYCJĘ PRZECZYTANYCH STRON
+        //     element.bind('click', function() {
+		// 			alert(event.event_id);
+		// 		});
+    	// }
 		}); //end fullCalendar block	
 	  },//end success block
 	  error: function (xhr, status) {
@@ -126,17 +117,17 @@ function save_event()
 {
 var event_name=$("#event_name").val();
 var event_start_date=$("#event_start_date").val();
-var event_end_date=$("#event_end_date").val();
-if(event_name=="" || event_start_date=="" || event_end_date=="")
+// var event_end_date=$("#event_end_date").val();
+if(event_name=="" || event_start_date=="" /*|| event_end_date==""*/)
 {
 alert("Please enter all required details.");
 return false;
 }
 $.ajax({
- url:"save_event.php",
+ url:"save_pages.php",
  type:"POST",
  dataType: 'json',
- data: {event_name:event_name,event_start_date:event_start_date,event_end_date:event_end_date},
+ data: {event_name:event_name,event_start_date:event_start_date/*,event_end_date:event_end_date*/},
  success:function(response){
    $('#event_entry_modal').modal('hide');  
    if(response.status == true)
@@ -151,7 +142,7 @@ $.ajax({
   },
   error: function (xhr, status) {
   console.log('ajax error = ' + xhr.statusText);
-  alert(response.msg);
+//   alert(response.msg);
   }
 });    
 return false;
